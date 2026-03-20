@@ -1,684 +1,400 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Anjesh Kumar — Senior DevOps Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<title>Anjesh Kumar - Senior DevOps Engineer</title>
 <style>
-  :root {
-    --ink: #0d1117;
-    --ink2: #1e2a3a;
-    --accent: #0070f3;
-    --accent2: #00c6fb;
-    --gold: #f5a623;
-    --surface: #f7f9fc;
-    --border: #dde3ec;
-    --muted: #6b7a90;
-    --white: #ffffff;
-    --tag-bg: #e8f0fe;
-    --tag-color: #1a56c4;
-    --grad: linear-gradient(135deg, #0d1117 0%, #1a2840 60%, #0f2a4a 100%);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--surface);
-    color: var(--ink);
-    line-height: 1.6;
-    font-size: 15px;
-    -webkit-font-smoothing: antialiased;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.4;
   }
 
-  /* ── HERO ─────────────────────────────────────── */
-  .hero {
-    background: var(--grad);
-    color: var(--white);
-    padding: 72px 48px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 800px 600px at 80% -10%, rgba(0,112,243,.25) 0%, transparent 70%),
-      radial-gradient(ellipse 500px 400px at -5% 110%, rgba(0,198,251,.15) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-grid {
-    max-width: 960px;
+  .page {
+    max-width: 780px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 40px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
+    padding: 36px 48px;
   }
 
-  .hero-eyebrow {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 14px;
-    opacity: 0;
-    animation: fadeUp .5s .1s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(38px, 6vw, 64px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -.02em;
-    margin-bottom: 10px;
-    opacity: 0;
-    animation: fadeUp .55s .2s forwards;
-  }
-
-  .hero-name span {
-    background: linear-gradient(90deg, #fff 30%, var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-title {
-    font-size: 17px;
-    font-weight: 400;
-    color: rgba(255,255,255,.7);
-    margin-bottom: 28px;
-    opacity: 0;
-    animation: fadeUp .55s .3s forwards;
-  }
-
-  .hero-contacts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px;
-    opacity: 0;
-    animation: fadeUp .55s .4s forwards;
-  }
-
-  .hero-contacts a {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: rgba(255,255,255,.75);
-    text-decoration: none;
-    font-size: 13.5px;
-    transition: color .2s;
-  }
-  .hero-contacts a:hover { color: var(--accent2); }
-  .hero-contacts a svg { flex-shrink: 0; }
-
-  /* stats column */
-  .hero-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    opacity: 0;
-    animation: fadeUp .55s .45s forwards;
-  }
-
-  .stat-card {
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 14px;
-    padding: 14px 20px;
+  /* ── HEADER ── */
+  .header {
     text-align: center;
-    backdrop-filter: blur(6px);
-    min-width: 120px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
   }
 
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 30px;
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1;
+  .header h1 {
+    font-size: 22pt;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
 
-  .stat-label {
-    font-size: 11px;
-    color: rgba(255,255,255,.55);
-    letter-spacing: .04em;
+  .header h2 {
+    font-size: 12pt;
+    font-weight: normal;
     margin-top: 3px;
+    letter-spacing: 1px;
   }
 
-  /* ── LAYOUT ───────────────────────────────────── */
-  .wrapper {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 48px 24px 80px;
-    display: grid;
-    grid-template-columns: 1fr 296px;
-    gap: 36px;
-    align-items: start;
+  .contact-line {
+    font-size: 10pt;
+    margin-top: 6px;
+    color: #000;
   }
 
-  /* ── SECTION ──────────────────────────────────── */
-  .section { margin-bottom: 44px; }
+  .contact-line a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 14px;
+  }
 
   .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .2em;
+    font-size: 11pt;
+    font-weight: bold;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2px;
+    margin-bottom: 8px;
+  }
+
+  /* ── SUMMARY ── */
+  .summary p {
+    font-size: 10.5pt;
+    text-align: justify;
+    line-height: 1.5;
+  }
+
+  /* ── SKILLS TABLE ── */
+  .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10.5pt;
+  }
+
+  .skills-table td {
+    padding: 3px 6px;
+    vertical-align: top;
+    border: 1px solid #aaa;
+  }
+
+  .skills-table td:first-child {
+    font-weight: bold;
+    width: 36%;
+    background: #f2f2f2;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-list {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 10.5pt;
+  }
+
+  .cert-list li {
+    margin-bottom: 3px;
+  }
+
+  /* ── EXPERIENCE ── */
+  .job { margin-bottom: 14px; }
+
+  .job-top {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: baseline;
   }
-
-  .section-title::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ── SUMMARY ──────────────────────────────────── */
-  .summary-text {
-    color: #344156;
-    line-height: 1.75;
-    font-size: 14.5px;
-    font-weight: 300;
-  }
-
-  /* ── EXPERIENCE ───────────────────────────────── */
-  .job {
-    position: relative;
-    padding-left: 24px;
-    margin-bottom: 36px;
-    opacity: 0;
-    animation: fadeUp .5s forwards;
-  }
-
-  .job:nth-child(1) { animation-delay: .05s; }
-  .job:nth-child(2) { animation-delay: .15s; }
-  .job:nth-child(3) { animation-delay: .25s; }
-
-  .job::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 6px; bottom: -36px;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-  }
-  .job:last-child::before { bottom: 0; }
-
-  .job-dot {
-    position: absolute;
-    left: -5px; top: 5px;
-    width: 12px; height: 12px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px rgba(0,112,243,.2);
-  }
-
-  .job-header { margin-bottom: 6px; }
 
   .job-company {
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ink);
+    font-size: 11pt;
+    font-weight: bold;
+  }
+
+  .job-date {
+    font-size: 10pt;
+    font-style: italic;
+    white-space: nowrap;
   }
 
   .job-role {
-    font-size: 13.5px;
-    color: var(--accent);
-    font-weight: 500;
-    margin-top: 1px;
+    font-size: 10.5pt;
+    font-style: italic;
+    margin-bottom: 1px;
   }
 
-  .job-meta {
-    font-size: 12.5px;
-    color: var(--muted);
-    margin: 4px 0 10px;
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+  .job-location {
+    font-size: 10pt;
+    color: #333;
+    margin-bottom: 4px;
   }
 
   .job-apps {
-    font-size: 12px;
-    color: var(--muted);
+    font-size: 10pt;
+    margin-bottom: 4px;
+  }
+
+  .achievements-label {
+    font-size: 10.5pt;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .achievements {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 10.5pt;
+  }
+
+  .achievements li {
+    margin-bottom: 3px;
+    line-height: 1.45;
+  }
+
+  .tech-line {
+    font-size: 10pt;
+    margin-top: 5px;
+  }
+
+  /* ── AWARDS ── */
+  .awards-list {
+    list-style: none;
+    padding-left: 0;
+    font-size: 10.5pt;
+  }
+
+  .awards-list li {
+    margin-bottom: 4px;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .awards-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-item { margin-bottom: 8px; }
+
+  .edu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .edu-degree {
+    font-weight: bold;
+    font-size: 10.5pt;
+  }
+
+  .edu-year {
+    font-size: 10pt;
     font-style: italic;
-    margin-bottom: 10px;
   }
 
-  .job-achievements { list-style: none; }
-
-  .job-achievements li {
-    display: flex;
-    gap: 8px;
-    font-size: 13.5px;
-    color: #344156;
-    line-height: 1.6;
-    margin-bottom: 7px;
-    font-weight: 300;
+  .edu-uni {
+    font-size: 10.5pt;
   }
 
-  .job-achievements li::before {
-    content: "▸";
-    color: var(--accent);
-    flex-shrink: 0;
-    font-size: 11px;
-    margin-top: 3px;
-  }
-
-  .job-achievements li strong { color: var(--ink); font-weight: 500; }
-
-  .job-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 12px;
-  }
-
-  .tech-tag {
-    background: var(--tag-bg);
-    color: var(--tag-color);
-    font-size: 11.5px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    letter-spacing: .02em;
-  }
-
-  /* ── SIDEBAR ──────────────────────────────────── */
-  .sidebar { position: sticky; top: 24px; }
-
-  .sidebar-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,.05);
-  }
-
-  /* certs */
-  .cert-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 11px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .cert-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-  .cert-badge {
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .cert-name { font-size: 13px; font-weight: 500; color: var(--ink2); line-height: 1.35; }
-  .cert-org  { font-size: 11.5px; color: var(--muted); }
-
-  /* skills table */
-  .skill-row {
-    margin-bottom: 14px;
-  }
-  .skill-cat {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-  .skill-tag {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--ink2);
-    font-size: 12px;
-    padding: 3px 9px;
-    border-radius: 6px;
-  }
-
-  /* awards */
-  .award-item {
-    display: flex;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-    color: var(--ink2);
-    line-height: 1.4;
-  }
-  .award-item:last-child { border-bottom: none; }
-  .award-icon { font-size: 18px; flex-shrink: 0; }
-
-  /* education */
-  .edu-item { margin-bottom: 16px; }
-  .edu-item:last-child { margin-bottom: 0; }
-  .edu-degree { font-size: 13.5px; font-weight: 600; color: var(--ink); }
-  .edu-uni    { font-size: 12.5px; color: var(--accent); margin-top: 1px; }
-  .edu-year   { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-  /* ── ANIMATIONS ───────────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── PRINT / MOBILE ───────────────────────────── */
-  @media (max-width: 720px) {
-    .hero { padding: 48px 24px 40px; }
-    .hero-grid { grid-template-columns: 1fr; }
-    .hero-stats { flex-direction: row; flex-wrap: wrap; }
-    .stat-card { min-width: 100px; }
-    .wrapper { grid-template-columns: 1fr; padding: 32px 16px 60px; }
-    .sidebar { position: static; }
-  }
-
+  /* ── PRINT ── */
   @media print {
-    .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 40px 36px; }
-    .wrapper { padding: 28px 36px 40px; }
-    .job { opacity: 1; animation: none; }
+    body { font-size: 10.5pt; }
+    .page { padding: 20px 36px; }
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<!-- ════════════════════ HERO ════════════════════ -->
-<header class="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Senior DevOps Engineer · 6.5+ Years</div>
-      <h1 class="hero-name"><span>Anjesh Kumar</span></h1>
-      <p class="hero-title">Cloud Infrastructure &nbsp;·&nbsp; Kubernetes &nbsp;·&nbsp; Multi-Cloud Automation</p>
-      <div class="hero-contacts">
-        <a href="mailto:anjeshvaishnav@gmail.com">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          anjeshvaishnav@gmail.com
-        </a>
-        <a href="tel:+918818059317">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92.92z"/></svg>
-          +91-8818059317
-        </a>
-        <a href="https://linkedin.com/in/anjeshvai/" target="_blank">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          linkedin.com/in/anjeshvai
-        </a>
-        <a href="#">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Gurugram, India
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-card">
-        <div class="stat-num">6.5+</div>
-        <div class="stat-label">Years Exp.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">40%</div>
-        <div class="stat-label">Deploy Speed ↑</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">5+</div>
-        <div class="stat-label">K8s Clusters</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">$200K</div>
-        <div class="stat-label">Annual Savings</div>
-      </div>
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Anjesh Kumar</h1>
+    <h2>Senior DevOps Engineer</h2>
+    <div class="contact-line">
+      📧 <a href="mailto:anjeshvaishnav@gmail.com">anjeshvaishnav@gmail.com</a>
+      &nbsp;|&nbsp;
+      📱 +91-8818059317
+      &nbsp;|&nbsp;
+      📍 Gurugram, India
+      &nbsp;|&nbsp;
+      💼 <a href="https://linkedin.com/in/anjeshvai/" target="_blank">linkedin.com/in/anjeshvai</a>
     </div>
   </div>
-</header>
 
-<!-- ════════════════════ BODY ════════════════════ -->
-<div class="wrapper">
+  <!-- PROFESSIONAL SUMMARY -->
+  <div class="section summary">
+    <div class="section-title">Professional Summary</div>
+    <p>
+      DevOps Engineer with 6.5+ years of expertise in Cloud Infrastructure, Containerization, Automation and Migration. Proven track record in architecting and implementing scalable solutions using Kubernetes, Docker, Helm, Terraform, and Ansible across multi-cloud environments (GCP, AWS, Azure). Certified professional (CKA, KCNA, GCP Professional Cloud Architect, Terraform Associate) with demonstrated success in leading migrations, optimizing GitLab CI/CD pipelines and reducing operational costs through automation. Actively expanding expertise in cloud-native AI Services.
+    </p>
+  </div>
 
-  <!-- ── MAIN COLUMN ── -->
-  <main>
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <table class="skills-table">
+      <tr>
+        <td>Containerization &amp; Orchestration</td>
+        <td>Kubernetes, Docker, Helm, GKE</td>
+      </tr>
+      <tr>
+        <td>Infrastructure as Code</td>
+        <td>Terraform, Ansible, Ansible Tower</td>
+      </tr>
+      <tr>
+        <td>CI/CD &amp; DevOps</td>
+        <td>Azure DevOps Pipelines, GitLab CI/CD</td>
+      </tr>
+      <tr>
+        <td>Cloud Platforms</td>
+        <td>GCP, AWS, Flexible Engine, Azure, On-Premises</td>
+      </tr>
+      <tr>
+        <td>Monitoring &amp; Logging</td>
+        <td>ELK Stack, Prometheus, Grafana, CloudWatch</td>
+      </tr>
+      <tr>
+        <td>Scripting &amp; Programming</td>
+        <td>Bash, Python (basic), YAML</td>
+      </tr>
+      <tr>
+        <td>Version Control</td>
+        <td>Git, GitHub, GitLab</td>
+      </tr>
+      <tr>
+        <td>Collaboration &amp; ITSM</td>
+        <td>Jira, Confluence, ServiceNow</td>
+      </tr>
+      <tr>
+        <td>Other Technologies</td>
+        <td>RESTful APIs, Linux Administration, AD, VMware vSphere</td>
+      </tr>
+    </table>
+  </div>
 
-    <!-- Summary -->
-    <div class="section">
-      <div class="section-title">About</div>
-      <p class="summary-text">
-        DevOps Engineer with <strong>6.5+ years of expertise</strong> in Cloud Infrastructure, Containerization, Automation and Migration. Proven track record architecting and implementing scalable solutions using Kubernetes, Docker, Helm, Terraform, and Ansible across multi-cloud environments (GCP, AWS, Azure). Certified professional — CKA, KCNA, GCP Professional Cloud Architect, Terraform Associate — with demonstrated success in leading zero-downtime migrations, optimizing CI/CD pipelines and reducing operational costs through automation. Actively expanding expertise in <strong>Cloud-Native AI Services</strong>.
-      </p>
+  <!-- CERTIFICATIONS -->
+  <div class="section">
+    <div class="section-title">Professional Certifications</div>
+    <ul class="cert-list">
+      <li>GCP Professional Cloud Architect</li>
+      <li>Certified Kubernetes Administrator (CKA)</li>
+      <li>Kubernetes and Cloud Native Associate (KCNA)</li>
+      <li>HashiCorp Certified: Terraform Associate</li>
+    </ul>
+  </div>
+
+  <!-- PROFESSIONAL EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Professional Experience</div>
+
+    <!-- Orange Business -->
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Orange Business</span>
+        <span class="job-date">June 2023 – Present</span>
+      </div>
+      <div class="job-role">Senior Consultant – Automation</div>
+      <div class="job-location">Gurugram, India</div>
+      <div class="job-apps"><strong>Applications:</strong> SIA, STAPLE, PORTEX, HIGHLIGHTER, RDC</div>
+      <div class="achievements-label">Key Achievements:</div>
+      <ul class="achievements">
+        <li>Spearheaded DevOps initiatives, reducing deployment time by 40% via optimized CI/CD pipelines.</li>
+        <li>Architected and executed multi-application migrations to on-prem and Kubernetes env with zero downtime.</li>
+        <li>Managed 5+ production Kubernetes clusters ensuring high availability and security compliance.</li>
+        <li>Implemented Helm-based deployments improving release consistency and rollback capabilities.</li>
+        <li>Automated SSL certificate management and renewal processes, eliminating manual intervention.</li>
+        <li>Led infrastructure troubleshooting and incident resolution, maintaining maximum uptime.</li>
+      </ul>
+      <div class="tech-line"><strong>Technologies:</strong> Kubernetes, Docker, Helm, Terraform, Ansible, GitLab, Bash</div>
     </div>
 
-    <!-- Experience -->
-    <div class="section">
-      <div class="section-title">Experience</div>
-
-      <!-- Orange -->
-      <div class="job">
-        <div class="job-dot"></div>
-        <div class="job-header">
-          <div class="job-company">Orange Business</div>
-          <div class="job-role">Senior Consultant – Automation</div>
-          <div class="job-meta">
-            <span>📅 June 2023 – Present</span>
-            <span>📍 Gurugram, India</span>
-          </div>
-          <div class="job-apps">Applications: SIA, STAPLE, PORTEX, HIGHLIGHTER, RDC</div>
-        </div>
-        <ul class="job-achievements">
-          <li>Spearheaded DevOps initiatives, reducing deployment time by <strong>40%</strong> via optimized CI/CD pipelines.</li>
-          <li>Architected and executed multi-application migrations to on-prem and Kubernetes environments with <strong>zero downtime</strong>.</li>
-          <li>Managed <strong>5+ production Kubernetes clusters</strong> ensuring high availability and security compliance.</li>
-          <li>Implemented Helm-based deployments improving release consistency and rollback capabilities.</li>
-          <li>Automated SSL certificate management and renewal processes, eliminating manual intervention.</li>
-          <li>Led infrastructure troubleshooting and incident resolution, maintaining maximum uptime.</li>
-        </ul>
-        <div class="job-tech">
-          <span class="tech-tag">Kubernetes</span><span class="tech-tag">Docker</span><span class="tech-tag">Helm</span>
-          <span class="tech-tag">Terraform</span><span class="tech-tag">Ansible</span><span class="tech-tag">GitLab CI/CD</span><span class="tech-tag">Bash</span>
-        </div>
+    <!-- Jio Platforms -->
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">Jio Platforms Limited (Reliance Industries)</span>
+        <span class="job-date">October 2021 – June 2023</span>
       </div>
-
-      <!-- Jio -->
-      <div class="job">
-        <div class="job-dot"></div>
-        <div class="job-header">
-          <div class="job-company">Jio Platforms Limited (Reliance Industries)</div>
-          <div class="job-role">DevOps Engineer</div>
-          <div class="job-meta">
-            <span>📅 October 2021 – June 2023</span>
-            <span>📍 Mumbai, India</span>
-          </div>
-          <div class="job-apps">Applications: Jio Meet, Jio Events</div>
-        </div>
-        <ul class="job-achievements">
-          <li>Led end-to-end migration of <strong>Jio Meet</strong> from on-premises infrastructure to GCP GKE.</li>
-          <li>Designed and provisioned scalable GCP infrastructure using Terraform with IaC best practices.</li>
-          <li>Implemented ELK Stack, Prometheus, Grafana logging & monitoring, reducing MTTR by <strong>50%</strong>.</li>
-          <li>Deployed Jio Events static website on Google Cloud Storage with CDN integration.</li>
-          <li>Optimized GKE cluster configurations including autoscaling, resource quotas and pod security policies.</li>
-          <li>Achieved <strong>30% cost reduction</strong> through GCP resource optimization and rightsizing initiatives.</li>
-          <li>Automated build and release pipelines using Azure DevOps, reducing deployment time from hours to minutes.</li>
-          <li>Configured and managed Squid Proxy for secure internet access and traffic filtering.</li>
-        </ul>
-        <div class="job-tech">
-          <span class="tech-tag">GCP</span><span class="tech-tag">GKE</span><span class="tech-tag">Terraform</span>
-          <span class="tech-tag">Docker</span><span class="tech-tag">Kubernetes</span><span class="tech-tag">Azure DevOps</span>
-          <span class="tech-tag">ELK</span><span class="tech-tag">Prometheus</span><span class="tech-tag">Grafana</span>
-        </div>
-      </div>
-
-      <!-- HCL -->
-      <div class="job">
-        <div class="job-dot"></div>
-        <div class="job-header">
-          <div class="job-company">HCL Technologies Limited</div>
-          <div class="job-role">Senior Analyst – DevOps Engineer &nbsp;|&nbsp; Client: AbbVie Inc.</div>
-          <div class="job-meta">
-            <span>📅 July 2019 – October 2021</span>
-            <span>📍 Noida, India</span>
-          </div>
-        </div>
-        <ul class="job-achievements">
-          <li>Developed Ansible playbooks for infrastructure automation across AWS and on-premises environments.</li>
-          <li>Automated provisioning of AWS resources (EC2, VPC, S3, IAM, ELB) using Terraform and Ansible.</li>
-          <li>Decommissioned <strong>500+ EC2 instances</strong> and 3000+ EBS volumes via pipelines, saving <strong>$200K+ annually</strong>.</li>
-          <li>Implemented AWS account provisioning automation using Terraform for multi-account environments.</li>
-          <li>Expanded Ansible Tower from single-node to multi-node cluster architecture for high availability.</li>
-          <li>Created Azure DevOps pipelines with Terraform and Ansible Tower REST API integration.</li>
-          <li>Reduced manual effort by <strong>70%</strong> by automating agent installations and infrastructure support tools.</li>
-          <li>Managed Active Directory and VMware vSphere infrastructure using Ansible automation.</li>
-        </ul>
-        <div class="job-tech">
-          <span class="tech-tag">AWS</span><span class="tech-tag">EC2 / VPC / S3</span><span class="tech-tag">Terraform</span>
-          <span class="tech-tag">Ansible Tower</span><span class="tech-tag">Azure DevOps</span><span class="tech-tag">VMware</span><span class="tech-tag">ServiceNow</span>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- ── SIDEBAR ── -->
-  <aside class="sidebar">
-
-    <!-- Certifications -->
-    <div class="sidebar-card">
-      <div class="section-title" style="margin-bottom:16px;">Certifications</div>
-      <div class="cert-item">
-        <div class="cert-badge" style="background:#e8f5e9;">☁️</div>
-        <div>
-          <div class="cert-name">GCP Professional Cloud Architect</div>
-          <div class="cert-org">Google Cloud</div>
-        </div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-badge" style="background:#e8f0fe;">⎈</div>
-        <div>
-          <div class="cert-name">Certified Kubernetes Administrator (CKA)</div>
-          <div class="cert-org">CNCF / Linux Foundation</div>
-        </div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-badge" style="background:#e3f2fd;">☸️</div>
-        <div>
-          <div class="cert-name">Kubernetes & Cloud Native Associate (KCNA)</div>
-          <div class="cert-org">CNCF / Linux Foundation</div>
-        </div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-badge" style="background:#f3e5f5;">🔧</div>
-        <div>
-          <div class="cert-name">Terraform Associate</div>
-          <div class="cert-org">HashiCorp</div>
-        </div>
-      </div>
+      <div class="job-role">DevOps Engineer</div>
+      <div class="job-location">Mumbai, India</div>
+      <div class="job-apps"><strong>Applications:</strong> Jio Meet, Jio Events</div>
+      <div class="achievements-label">Key Achievements:</div>
+      <ul class="achievements">
+        <li>Led end-to-end migration of Jio Meet from on-premises infrastructure to GCP GKE.</li>
+        <li>Designed and provisioned scalable GCP infrastructure using Terraform with IaC best practices.</li>
+        <li>Implemented logging and monitoring using ELK Stack, Prometheus, Grafana, reducing MTTR by 50%.</li>
+        <li>Deployed Jio Events static website on Google Cloud Storage with CDN.</li>
+        <li>Optimized GKE cluster configurations including autoscaling, resource quotas and pod security policies.</li>
+        <li>Achieved 30% cost reduction through GCP resource optimization and rightsizing initiatives.</li>
+        <li>Automated build and release pipelines using Azure DevOps, reducing deployment time from hours to minutes.</li>
+        <li>Configured and managed Squid Proxy for secure internet access and traffic filtering.</li>
+      </ul>
+      <div class="tech-line"><strong>Technologies:</strong> GCP, GKE, Terraform, Docker, Kubernetes, Azure DevOps, ELK, Prometheus, Grafana</div>
     </div>
 
-    <!-- Skills -->
-    <div class="sidebar-card">
-      <div class="section-title" style="margin-bottom:16px;">Technical Skills</div>
-
-      <div class="skill-row">
-        <div class="skill-cat">Container & Orchestration</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Kubernetes</span><span class="skill-tag">Docker</span>
-          <span class="skill-tag">Helm</span><span class="skill-tag">GKE</span>
-        </div>
+    <!-- HCL -->
+    <div class="job">
+      <div class="job-top">
+        <span class="job-company">HCL Technologies Limited</span>
+        <span class="job-date">July 2019 – October 2021</span>
       </div>
-      <div class="skill-row">
-        <div class="skill-cat">Infrastructure as Code</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Terraform</span><span class="skill-tag">Ansible</span>
-          <span class="skill-tag">Ansible Tower</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-cat">CI/CD & DevOps</div>
-        <div class="skill-tags">
-          <span class="skill-tag">GitLab CI/CD</span><span class="skill-tag">Azure DevOps</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-cat">Cloud Platforms</div>
-        <div class="skill-tags">
-          <span class="skill-tag">GCP</span><span class="skill-tag">AWS</span>
-          <span class="skill-tag">Azure</span><span class="skill-tag">Flexible Engine</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-cat">Monitoring & Logging</div>
-        <div class="skill-tags">
-          <span class="skill-tag">ELK Stack</span><span class="skill-tag">Prometheus</span>
-          <span class="skill-tag">Grafana</span><span class="skill-tag">CloudWatch</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-cat">Scripting</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Bash</span><span class="skill-tag">Python</span>
-          <span class="skill-tag">YAML</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-cat">Other</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Git / GitHub / GitLab</span>
-          <span class="skill-tag">Linux Admin</span>
-          <span class="skill-tag">VMware vSphere</span>
-          <span class="skill-tag">ServiceNow</span>
-          <span class="skill-tag">Jira / Confluence</span>
-        </div>
-      </div>
+      <div class="job-role">Senior Analyst – DevOps Engineer &nbsp;|&nbsp; Client: AbbVie Inc.</div>
+      <div class="job-location">Noida, India</div>
+      <div class="achievements-label">Key Achievements:</div>
+      <ul class="achievements">
+        <li>Developed Ansible playbooks for infrastructure automation across AWS and on-premises environments.</li>
+        <li>Automated provisioning of AWS resources (EC2, VPC, S3, IAM, ELB) using Terraform and Ansible.</li>
+        <li>Decommissioned 500+ EC2 instances and 3000+ EBS volumes through pipelines, saving $200K+ annually.</li>
+        <li>Implemented AWS account provisioning automation using Terraform for multi-account environments.</li>
+        <li>Expanded Ansible Tower from single node to multi-node cluster architecture for high availability.</li>
+        <li>Created Azure DevOps pipelines with Terraform and Ansible Tower REST API integration.</li>
+        <li>Automated agent installations and infrastructure support tools (IPAM, Checkpoint) reducing manual effort by 70%.</li>
+        <li>Managed Active Directory and VMware vSphere infrastructure using Ansible automation.</li>
+      </ul>
+      <div class="tech-line"><strong>Technologies:</strong> AWS (EC2, VPC, S3, IAM, ELB), Terraform, Ansible Tower, Azure DevOps, VMware, ServiceNow</div>
     </div>
 
-    <!-- Awards -->
-    <div class="sidebar-card">
-      <div class="section-title" style="margin-bottom:16px;">Awards & Recognition</div>
-      <div class="award-item">
-        <span class="award-icon">🏆</span>
-        <span><strong>Jio Spotlight Award</strong> for Outstanding Performance (2022)</span>
-      </div>
-      <div class="award-item">
-        <span class="award-icon">📚</span>
-        <span>Qualified <strong>GATE 2017</strong> — Graduate Aptitude Test in Engineering</span>
-      </div>
-      <div class="award-item">
-        <span class="award-icon">📚</span>
-        <span>Qualified <strong>UGC NET 2019</strong> — National Eligibility Test</span>
-      </div>
-    </div>
+  </div>
 
-    <!-- Education -->
-    <div class="sidebar-card">
-      <div class="section-title" style="margin-bottom:16px;">Education</div>
-      <div class="edu-item">
-        <div class="edu-degree">M.Tech — Computer Engineering</div>
-        <div class="edu-uni">J.C. Bose University (YMCA), Faridabad</div>
-        <div class="edu-year">Aug 2017 – Jun 2019</div>
-      </div>
-      <div class="edu-item">
-        <div class="edu-degree">B.Tech — Computer Science</div>
-        <div class="edu-uni">UIET, Kurukshetra University</div>
-        <div class="edu-year">Aug 2013 – Jun 2017</div>
-      </div>
-    </div>
+  <!-- AWARDS & RECOGNITION -->
+  <div class="section">
+    <div class="section-title">Awards &amp; Recognition</div>
+    <ul class="awards-list">
+      <li>🏆 Jio Spotlight Award for Outstanding Performance (2022)</li>
+      <li>📚 Qualified GATE 2017 (Graduate Aptitude Test in Engineering)</li>
+      <li>📚 Qualified UGC NET 2019 (National Eligibility Test)</li>
+    </ul>
+  </div>
 
-  </aside>
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-item">
+      <div class="edu-top">
+        <span class="edu-degree">M.Tech in Computer Engineering</span>
+        <span class="edu-year">August 2017 – June 2019</span>
+      </div>
+      <div class="edu-uni">J.C. Bose University of Science and Technology, YMCA, Faridabad</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-top">
+        <span class="edu-degree">B.Tech in Computer Science</span>
+        <span class="edu-year">August 2013 – June 2017</span>
+      </div>
+      <div class="edu-uni">UIET, Kurukshetra University, Kurukshetra</div>
+    </div>
+  </div>
+
 </div>
-
 </body>
 </html>
